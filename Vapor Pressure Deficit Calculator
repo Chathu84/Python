@@ -19,7 +19,9 @@ EX= C=getVPD(35,20)
 """
 import math
 import sys
-
+# Calculates the Saturated Vapor pressure Using temperature in Celcius Degrees. The equation only 
+considers tempertures above zero Celcius. Add a if statement to consider both below zero and
+above zero Celcius conditions.
 def getSatVapourPressure(T):
     SVP=0.611*math.exp(17.3*T/(237.3+T))
     return SVP    
