@@ -1,0 +1,38 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Oct 10 18:33:00 2015
+
+@author: nayani
+"""
+
+""" The module is used to calculate the Saturated vapor pressure, actual vapor pressure
+and the vapor pressure deficit using temperature and relative humidity values.
+The variales and the funstiions of the program  is defined as follows;
+T=Temperature in Celsius (EX: 20 C)
+RH=Relative Humidity in Percentage (35%)
+getSatVapourPressure(T) #Calulate the Saturated vapor pressure using temperature
+EX: A=getSatVapourPressure(20)
+getvaporPressure(RH,T) # Calculate the actual vapor pressure using both temperature and the realtive humidity
+EX: B=getvaporPressure(35,20)
+getVPD(T,RH) # Calculate the vapor pressure deficit
+EX= C=getVPD(35,20)
+"""
+import math
+import sys
+
+def getSatVapourPressure(T):
+    SVP=0.611*math.exp(17.3*T/(237.3+T))
+    return SVP    
+ # function to calculate the actual vapour pressure for the given temperature and humidity data   
+def getvaporPressure(RH,T):
+        VP=RH*getSatVapourPressure(T)
+        return VP       
+# function to calculate the      vapour pressure deficit
+def getVPD(T,RH):
+    VPDefit=getSatVapourPressure(T)-getvaporPressure(RH,T)
+    return VPDefit
+# test block to run the program as a module or as a program
+if __name__=='__main__':
+    print 'run as a program'
+    print getVPD(float(sys.argv[1]),float(sys.argv[2]))
+    
